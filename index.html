@@ -13,44 +13,25 @@
   --bg:#f8fafc;--card:#ffffff;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;
 }
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-
-/* HEADER */
 header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06)}
 .logo svg{width:46px;height:46px}
 .htext .htitle{font-size:15px;font-weight:600;color:var(--text);letter-spacing:0.01em}
 .htext .hdoc{font-size:12px;color:var(--blue-dark);font-weight:500;margin-top:1px}
 .htext .hsub{font-size:11px;color:var(--muted);margin-top:1px}
-
-/* TABS */
-.tabs{display:flex;background:#fff;border-bottom:1px solid var(--border);padding:0 16px;gap:4px}
-.tab{padding:10px 16px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500;transition:all 0.15s}
-.tab.active{color:var(--blue-dark);border-bottom-color:var(--blue)}
-.tab:hover:not(.active){color:var(--text)}
-
-/* MAIN */
 .main{max-width:680px;margin:0 auto;padding:20px 16px 40px}
-
-/* CARDS */
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px}
 .card-title{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px}
-
-/* PROGRESS */
 .prog-area{margin-bottom:16px}
 .prog-lbl{font-size:12px;color:var(--muted);margin-bottom:6px}
 .prog-bar{height:4px;background:var(--border);border-radius:2px}
 .prog-fill{height:4px;border-radius:2px;background:var(--blue);transition:width 0.4s ease}
-
-/* FORM FIELDS */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.frow.one{grid-template-columns:1fr}
 .frow.three{grid-template-columns:1fr 1fr 1fr}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-size:12px;color:var(--muted);font-weight:500}
 .field input,.field select{height:38px;border:1px solid var(--border);border-radius:8px;padding:0 10px;font-size:13px;background:#fff;color:var(--text);outline:none;transition:border 0.15s}
 .field input:focus,.field select:focus{border-color:var(--blue)}
 .field input[readonly]{background:#f9fafb;color:var(--muted);cursor:default}
-
-/* QUESTIONS */
 .qblock{border-bottom:1px solid var(--border);padding:12px 0}
 .qblock:last-child{border-bottom:none;padding-bottom:0}
 .qnum{font-size:11px;font-weight:600;color:var(--blue-dark);margin-bottom:3px}
@@ -60,8 +41,6 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
 .opt{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:#fff;font-size:12px;text-align:left;color:var(--text);transition:all 0.12s;width:100%}
 .opt:hover{border-color:var(--blue);background:var(--blue-light)}
 .opt.sel{border-color:var(--blue);background:var(--blue-light);color:#0e7fa3;font-weight:500}
-
-/* NAV */
 .nav{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:8px}
 .btn{padding:9px 20px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;border:1px solid var(--border);background:#fff;color:var(--text);transition:all 0.12s}
 .btn:hover{background:#f3f4f6}
@@ -71,19 +50,14 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
 .btn-green{background:var(--green);color:#fff;border-color:var(--green)}
 .btn-green:hover{background:var(--green-dark)}
 .cnt{font-size:12px;color:var(--muted)}
-
-/* RESULT STYLES */
 .risk-banner{display:flex;align-items:center;gap:14px;padding:16px;border-radius:10px;margin-bottom:14px}
 .risk-banner.verde{background:#f0fdf4;border:1px solid #86efac}
 .risk-banner.amarillo{background:#fffbeb;border:1px solid #fcd34d}
 .risk-banner.rojo{background:#fef2f2;border:1px solid #fca5a5}
 .risk-dot{width:22px;height:22px;border-radius:50%;flex-shrink:0}
-.risk-dot.verde{background:var(--green)}
-.risk-dot.amarillo{background:var(--amber)}
-.risk-dot.rojo{background:var(--red)}
+.risk-dot.verde{background:var(--green)}.risk-dot.amarillo{background:var(--amber)}.risk-dot.rojo{background:var(--red)}
 .risk-title{font-size:20px;font-weight:600}
 .risk-sub{font-size:12px;color:var(--muted);margin-top:2px}
-
 .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .mcard{border-radius:10px;padding:14px}
 .mcard.blue-bg{background:#eff9ff;border:1px solid #bae6fd}
@@ -92,63 +66,57 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
 .mval{font-size:30px;font-weight:600;line-height:1}
 .mval span{font-size:13px;font-weight:400;color:var(--muted)}
 .minterp{font-size:11px;color:var(--muted);margin-top:4px}
-
 .badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px}
-.badge.verde{background:#dcfce7;color:#166534}
-.badge.amarillo{background:#fef9c3;color:#854d0e}
-.badge.rojo{background:#fee2e2;color:#991b1b}
-.badge.blue{background:#dbeafe;color:#1e40af}
-
+.badge.verde{background:#dcfce7;color:#166534}.badge.amarillo{background:#fef9c3;color:#854d0e}.badge.rojo{background:#fee2e2;color:#991b1b}
 .comp-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
 .comp-row:last-child{border-bottom:none}
 .comp-nm{font-size:12px;color:var(--muted);flex:1}
 .bar-bg{width:80px;height:5px;background:var(--border);border-radius:3px;flex-shrink:0}
 .bar-fill{height:5px;border-radius:3px}
 .comp-sc{font-size:12px;font-weight:600;width:30px;text-align:right}
-
 .rec-box{background:#f0fbff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;font-size:13px;line-height:1.7}
 .rec-box li{margin-bottom:5px}
 .alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 12px;font-size:12px;color:#9a3412;margin-top:10px}
 .alert.danger{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
-
-/* INFORME COMPLETO */
-.report-section{margin-bottom:20px}
-.report-section h3{font-size:13px;font-weight:600;color:var(--blue-dark);border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:10px}
 .report-table{width:100%;font-size:13px;border-collapse:collapse}
 .report-table td{padding:5px 0;border-bottom:1px solid #f3f4f6}
 .report-table td:first-child{color:var(--muted);width:45%}
 .report-table td:last-child{font-weight:500}
 .report-table tr:last-child td{border-bottom:none}
+.view{display:none}.view.on{display:block}
 
-/* HISTORIAL */
+/* GRACIAS final */
+.gracias-box{text-align:center;padding:40px 20px}
+.gracias-icon{font-size:48px;margin-bottom:16px}
+.gracias-title{font-size:22px;font-weight:600;color:var(--blue-dark);margin-bottom:8px}
+.gracias-sub{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* PANEL MÉDICO */
+.login-box{max-width:360px;margin:40px auto}
+.login-error{font-size:12px;color:var(--red);margin-top:6px;display:none}
 .hist-empty{text-align:center;padding:40px;color:var(--muted);font-size:13px}
-.hist-item{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.12s}
-.hist-item:hover{background:#f9fafb}
+.hist-item{border-bottom:1px solid var(--border)}
 .hist-item:last-child{border-bottom:none}
+.hist-header{display:flex;align-items:center;gap:10px;padding:12px;cursor:pointer;transition:background 0.12s}
+.hist-header:hover{background:#f9fafb}
 .hist-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
 .hist-info{flex:1;min-width:0}
 .hist-name{font-size:13px;font-weight:500}
 .hist-meta{font-size:11px;color:var(--muted);margin-top:1px}
 .hist-scores{text-align:right;font-size:11px;color:var(--muted);flex-shrink:0}
-.hist-detail{display:none;padding:14px;background:#f9fafb;border-top:1px solid var(--border)}
+.hist-detail{display:none;padding:14px 16px;background:#f9fafb;border-top:1px solid var(--border)}
 .hist-detail.open{display:block}
-
-/* DOWNLOAD BTN */
-.btn-dl{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:#fff;border:1px solid var(--border);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.12s;color:var(--text)}
+.btn-dl{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:#fff;border:1px solid var(--border);font-size:12px;font-weight:500;cursor:pointer;transition:all 0.12s;color:var(--text)}
 .btn-dl:hover{background:#f3f4f6}
+.medico-lock{font-size:11px;color:var(--muted);cursor:pointer;padding:6px 10px;border-radius:6px;border:1px solid var(--border);background:#fff;margin-left:auto}
+.medico-lock:hover{background:#f3f4f6}
 
-/* STATUS */
-.status-ok{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;font-size:12px;color:#166534;margin-top:10px}
-.status-err{background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:12px;color:#991b1b;margin-top:10px}
+/* TABS solo para médico */
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--border);padding:0 16px;gap:4px;align-items:center}
+.tab{padding:10px 16px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted);font-weight:500;transition:all 0.15s}
+.tab.active{color:var(--blue-dark);border-bottom-color:var(--blue)}
 
-/* VIEW TOGGLE */
-.view{display:none}.view.on{display:block}
-
-@media(max-width:480px){
-  .frow{grid-template-columns:1fr}
-  .frow.three{grid-template-columns:1fr 1fr}
-  .mgrid{grid-template-columns:1fr}
-}
+@media(max-width:480px){.frow{grid-template-columns:1fr}.frow.three{grid-template-columns:1fr 1fr}.mgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -170,22 +138,23 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
   </div>
 </header>
 
-<div class="tabs">
+<!-- TABS: solo visibles para médico logueado -->
+<div class="tabs" id="med-tabs" style="display:none">
   <div class="tab active" id="tab-eval" onclick="switchTab('eval')">Nueva evaluación</div>
   <div class="tab" id="tab-hist" onclick="switchTab('hist')">Historial</div>
+  <button class="medico-lock" onclick="logout()">🔒 Cerrar sesión</button>
 </div>
 
 <div class="main">
 
-  <!-- ===== EVALUACIÓN ===== -->
+  <!-- ===== EVALUACIÓN TRABAJADOR ===== -->
   <div class="view on" id="view-eval">
-
     <div class="prog-area">
       <div class="prog-lbl" id="plbl">Paso 1 de 4 — Datos del trabajador</div>
       <div class="prog-bar"><div class="prog-fill" id="pfill" style="width:20%"></div></div>
     </div>
 
-    <!-- STEP 1 -->
+    <!-- S1 -->
     <div id="s1">
       <div class="card">
         <div class="card-title">Datos del trabajador</div>
@@ -225,7 +194,7 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
       <div class="nav"><span></span><button class="btn btn-blue" onclick="step1Next()">Continuar — Epworth →</button></div>
     </div>
 
-    <!-- STEP 2: EPWORTH -->
+    <!-- S2 EPWORTH -->
     <div id="s2" style="display:none">
       <div class="card">
         <div class="card-title">Escala de somnolencia de Epworth (ESE)</div>
@@ -239,7 +208,7 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
       </div>
     </div>
 
-    <!-- STEP 3: PITTSBURGH -->
+    <!-- S3 PITTSBURGH -->
     <div id="s3" style="display:none">
       <div class="card">
         <div class="card-title">Índice de calidad del sueño de Pittsburgh (ICSP)</div>
@@ -249,29 +218,50 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
       <div class="nav">
         <button class="btn" onclick="go(2)">← Atrás</button>
         <span class="cnt" id="icsp-cnt">0 / 19 respondidas</span>
-        <button class="btn btn-green" id="btn-icsp" onclick="calcular()" disabled>Ver resultados →</button>
+        <button class="btn btn-green" id="btn-icsp" onclick="calcular()" disabled>Enviar evaluación →</button>
       </div>
     </div>
 
-    <!-- STEP 4: RESULTADOS -->
+    <!-- S4 GRACIAS (trabajador) -->
     <div id="s4" style="display:none">
-      <div id="res-all"></div>
-      <div id="send-status"></div>
-      <div class="nav" style="margin-top:0">
-        <button class="btn" onclick="reiniciar()">← Nueva evaluación</button>
-        <button class="btn btn-blue" onclick="printReport()">Imprimir / PDF</button>
+      <div class="card">
+        <div class="gracias-box">
+          <div class="gracias-icon">✅</div>
+          <div class="gracias-title">Evaluación enviada</div>
+          <div class="gracias-sub">Gracias por completar la evaluación.<br>Los resultados han sido registrados y serán revisados por el<br><strong>Dr. Wenceslao Ochoa Cuadros</strong>.<br><br>Si tiene alguna consulta, comuníquese con su supervisor HSEC.</div>
+        </div>
       </div>
     </div>
 
   </div><!-- end view-eval -->
 
-  <!-- ===== HISTORIAL ===== -->
+  <!-- ===== PANEL MÉDICO: LOGIN ===== -->
+  <div class="view" id="view-login">
+    <div class="login-box">
+      <div class="card">
+        <div class="card-title">Acceso panel médico</div>
+        <div class="field" style="margin-bottom:12px">
+          <label>Clave de acceso</label>
+          <input id="clave-input" type="password" placeholder="Ingrese la clave" onkeydown="if(event.key==='Enter')checkLogin()">
+        </div>
+        <div id="login-error" class="login-error">Clave incorrecta. Intente nuevamente.</div>
+        <div style="margin-top:12px">
+          <button class="btn btn-blue" style="width:100%" onclick="checkLogin()">Ingresar</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px">
+        <span style="font-size:12px;color:var(--muted);cursor:pointer" onclick="switchTab('eval')">← Volver a evaluación</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PANEL MÉDICO: HISTORIAL ===== -->
   <div class="view" id="view-hist">
     <div class="card" style="padding:0;overflow:hidden">
       <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)">
         <div class="card-title" style="margin:0">Evaluaciones registradas</div>
         <div style="display:flex;gap:8px">
-          <button class="btn-dl" onclick="downloadCSV()">⬇ Descargar Excel/CSV</button>
+          <button class="btn-dl" onclick="downloadCSV()">⬇ Descargar CSV</button>
           <button class="btn" style="font-size:11px;padding:5px 10px;color:#991b1b;border-color:#fca5a5" onclick="clearAll()">Limpiar</button>
         </div>
       </div>
@@ -281,10 +271,15 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
 
 </div><!-- end main -->
 
-<!-- PRINT AREA -->
-<div id="print-area" style="display:none"></div>
+<!-- BOTÓN OCULTO MÉDICO (doble tap en el footer) -->
+<div style="text-align:center;padding:16px 0 8px;font-size:11px;color:#d1d5db" ondblclick="goLogin()" title="">
+  PANACEA · Medicina Ocupacional
+</div>
 
 <script>
+const PASS='luzdormilona';
+let isDoc=false;
+
 // ---- DATA ----
 const ESE_Q=["Sentado/a leyendo","Viendo televisión","Sentado/a inactivo/a en un lugar público (reunión, teatro, etc.)","Como pasajero/a en un auto durante una hora sin parar","Descansando en la tarde cuando las circunstancias lo permiten","Sentado/a conversando con alguien","Sentado/a tranquilamente después del almuerzo sin alcohol","En un auto, detenido/a por tráfico unos minutos"];
 const ESE_O=["0 – Nunca se quedaría dormido/a","1 – Ligera posibilidad","2 – Moderada posibilidad","3 – Alta posibilidad"];
@@ -309,12 +304,10 @@ const ICSP=[
   {g:"Disfunción diurna",q:"¿Con qué frecuencia se sintió con poca motivación para sus actividades habituales?",o:["Ninguna vez en el mes","Menos de 1 vez/semana","1 – 2 veces/semana","≥ 3 veces/semana"]},
   {g:"Disfunción diurna",q:"¿Cómo valoraría el entusiasmo con el que afronta sus tareas diarias?",o:["Ningún problema","Problema muy ligero","Algo de problema","Un gran problema"]}
 ];
-const C_NAMES=["C1 — Calidad subjetiva","C2 — Latencia","C3 — Duración","C4 — Eficiencia habitual","C5 — Perturbaciones","C6 — Uso medicación","C7 — Disfunción diurna"];
+const C_NAMES=["C1 — Calidad subjetiva","C2 — Latencia","C3 — Duración","C4 — Eficiencia","C5 — Perturbaciones","C6 — Uso medicación","C7 — Disfunción diurna"];
 
-// ---- STATE ----
-let eA=new Array(8).fill(-1), iA=new Array(ICSP.length).fill(-1), curS=1;
+let eA=new Array(8).fill(-1),iA=new Array(ICSP.length).fill(-1),curS=1;
 
-// ---- HELPERS ----
 const gv=id=>{const el=document.getElementById(id);return el?el.value||'—':'—';};
 
 function calcICSP(){
@@ -326,17 +319,15 @@ function calcICSP(){
   const du=iA.slice(15,19).reduce((a,b)=>a+b,0);const C7=du<=0?0:du<=5?1:du<=10?2:3;
   return{t:C1+C2+C3+C4+C5+C6+C7,c:[C1,C2,C3,C4,C5,C6,C7]};
 }
-
 function riskOf(ese,is){
-  if(ese>=16||is>10) return{r:'Alto',col:'rojo',accion:'Derivar a médico ocupacional. Restricción inmediata de conducción y puestos PCS.'};
-  if(ese>=11||is>5)  return{r:'Moderado',col:'amarillo',accion:'Seguimiento por HSEC. Reforzar higiene del sueño. Reevaluar en 30 días.'};
+  if(ese>=16||is>10)return{r:'Alto',col:'rojo',accion:'Derivar a médico ocupacional. Restricción inmediata de conducción y puestos PCS.'};
+  if(ese>=11||is>5)return{r:'Moderado',col:'amarillo',accion:'Seguimiento HSEC. Reforzar higiene del sueño. Reevaluar en 30 días.'};
   return{r:'Bajo',col:'verde',accion:'Sin restricciones. Continuar vigilancia periódica según protocolo EMO.'};
 }
+function eseI(s){return s<=10?'Normal':s<=15?'Somnolencia moderada':s<=20?'Somnolencia severa':'Somnolencia muy severa';}
+function icspI(s){return s<=5?'Calidad buena':s<=10?'Calidad moderadamente alterada':'Calidad gravemente alterada';}
+const barC=v=>v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';
 
-function eseInterp(s){return s<=10?'Normal (sin somnolencia excesiva)':s<=15?'Somnolencia diurna moderada':s<=20?'Somnolencia diurna severa':'Somnolencia muy severa';}
-function icspInterp(s){return s<=5?'Calidad de sueño buena':s<=10?'Calidad moderadamente alterada':'Calidad gravemente alterada';}
-
-// ---- BUILD QUESTIONS ----
 function buildESE(){
   const c=document.getElementById('ese-qs');c.innerHTML='';
   ESE_Q.forEach((q,i)=>{
@@ -350,13 +341,12 @@ function buildESE(){
     });
   });
 }
-
 function buildICSP(){
   const c=document.getElementById('icsp-qs');c.innerHTML='';
   let lg='';
   ICSP.forEach((q,i)=>{
     const d=document.createElement('div');d.className='qblock';
-    const gh=q.g!==lg?`<div class="qgrp">— ${q.g}</div>`:'' ;lg=q.g;
+    const gh=q.g!==lg?`<div class="qgrp">— ${q.g}</div>`:'';lg=q.g;
     d.innerHTML=`${gh}<div class="qnum">Pregunta ${i+1}</div><div class="qtext">${q.q}</div><div class="opts" id="io${i}"></div>`;
     c.appendChild(d);
     q.o.forEach((o,v)=>{
@@ -366,15 +356,13 @@ function buildICSP(){
     });
   });
 }
-
 function updESE(){const d=eA.filter(x=>x>=0).length;document.getElementById('ese-cnt').textContent=`${d} / 8 respondidas`;document.getElementById('btn-ese').disabled=d<8;}
 function updICSP(){const d=iA.filter(x=>x>=0).length;document.getElementById('icsp-cnt').textContent=`${d} / ${ICSP.length} respondidas`;document.getElementById('btn-icsp').disabled=d<ICSP.length;}
 
-// ---- NAVIGATION ----
 function go(n){
   document.getElementById(`s${curS}`).style.display='none';
   curS=n;document.getElementById(`s${curS}`).style.display='';
-  const lb=['','Paso 1 de 4 — Datos del trabajador','Paso 2 de 4 — Escala de Epworth (ESE)','Paso 3 de 4 — Pittsburgh (ICSP)','Paso 4 de 4 — Resultados'];
+  const lb=['','Paso 1 de 4 — Datos del trabajador','Paso 2 de 4 — Escala de Epworth (ESE)','Paso 3 de 4 — Pittsburgh (ICSP)','Evaluación completada'];
   const pc=['','20%','45%','72%','100%'];
   document.getElementById('plbl').textContent=lb[n];
   document.getElementById('pfill').style.width=pc[n];
@@ -389,193 +377,69 @@ function step1Next(){
   go(2);
 }
 
-// ---- CALCULATE ----
 function calcular(){
   const ese=eA.reduce((a,b)=>a+b,0);
   const icsp=calcICSP();
   const risk=riskOf(ese,icsp.t);
-  const eI=eseInterp(ese);const iI=icspInterp(icsp.t);
-
   const rec={
     nombre:gv('nombre'),dni:gv('dni'),cargo:gv('cargo'),area:gv('area'),
     turno:gv('turno'),fecha:gv('fecha'),
     ese,icsp_t:icsp.t,comps:icsp.c,
-    ese_interp:eI,icsp_interp:iI,
+    ese_interp:eseI(ese),icsp_interp:icspI(icsp.t),
     riesgo:risk.r,col:risk.col,accion:risk.accion,
     ts:Date.now()
   };
-
-  renderResult(rec);
   saveRec(rec);
   sendToSheets(rec);
   go(4);
 }
 
-// ---- RENDER RESULT ----
-function renderResult(r){
-  const recs=r.riesgo==='Alto'
-    ?['Derivación inmediata al médico ocupacional.','Restricción temporal de conducción y puestos PCS hasta reevaluación médica.','Solicitar evaluación de trastornos del sueño (considerar polisomnografía si sospecha SAHOS).','Notificar al Supervisor HSEC y registrar en expediente médico ocupacional.']
-    :r.riesgo==='Moderado'
-    ?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño: horarios regulares, evitar cafeína nocturna, ambiente adecuado.','Aplicar Herramienta del Supervisor (Anexo 05) al inicio de cada turno.','Reevaluar con ESE + ICSP en 30 días.']
-    :['Continuar vigilancia periódica según protocolo EMO.','Reforzar pausas activas y hábitos de descanso durante la jornada.','Reevaluar en próximo EMO programado.'];
-
-  const barColor=v=>v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';
-
-  document.getElementById('res-all').innerHTML=`
-    <!-- IDENTIFICACIÓN -->
-    <div class="card">
-      <div class="card-title">Identificación del trabajador</div>
-      <table class="report-table">
-        <tr><td>Nombres y apellidos</td><td>${r.nombre}</td></tr>
-        <tr><td>DNI</td><td>${r.dni}</td></tr>
-        <tr><td>Cargo / Puesto</td><td>${r.cargo}</td></tr>
-        <tr><td>Área / Frente</td><td>${r.area}</td></tr>
-        <tr><td>Turno</td><td>${r.turno}</td></tr>
-        <tr><td>Fecha de evaluación</td><td>${r.fecha}</td></tr>
-        <tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr>
-      </table>
-    </div>
-
-    <!-- RESULTADO GLOBAL -->
-    <div class="card">
-      <div class="card-title">Resultado integrado ESE + ICSP</div>
-      <div class="risk-banner ${r.col}">
-        <div class="risk-dot ${r.col}"></div>
-        <div>
-          <div class="risk-title">Riesgo ${r.riesgo}</div>
-          <div class="risk-sub">${r.accion}</div>
-        </div>
-      </div>
-      <div class="mgrid">
-        <div class="mcard blue-bg">
-          <div class="mlbl">Epworth (ESE)</div>
-          <div class="mval">${r.ese}<span> / 24</span></div>
-          <div class="minterp">${r.ese_interp}</div>
-          <div style="margin-top:6px"><span class="badge ${r.col}">${r.ese>=11?'Somnolencia excesiva':'Normal'}</span></div>
-        </div>
-        <div class="mcard green-bg">
-          <div class="mlbl">Pittsburgh (ICSP)</div>
-          <div class="mval">${r.icsp_t}<span> / 21</span></div>
-          <div class="minterp">${r.icsp_interp}</div>
-          <div style="margin-top:6px"><span class="badge ${r.col}">${r.icsp_t>5?'Calidad alterada':'Calidad buena'}</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EPWORTH DETALLE -->
-    <div class="card">
-      <div class="card-title">Detalle — Escala de Epworth (ESE)</div>
-      <table class="report-table" style="margin-bottom:10px">
-        <tr><td>Puntuación total</td><td>${r.ese} / 24</td></tr>
-        <tr><td>Interpretación</td><td>${r.ese_interp}</td></tr>
-        <tr><td>Punto de corte</td><td>≥ 11 = somnolencia diurna excesiva</td></tr>
-      </table>
-      ${r.ese>=11?`<div class="alert danger">Somnolencia diurna excesiva detectada. Evaluar aptitud para conducción y tareas PCS.</div>`:''}
-      ${r.ese>=16?`<div class="alert" style="margin-top:6px">Score ≥ 16: derivación prioritaria a evaluación médica especializada.</div>`:''}
-    </div>
-
-    <!-- PITTSBURGH DETALLE -->
-    <div class="card">
-      <div class="card-title">Detalle — Pittsburgh por componentes (ICSP)</div>
-      ${C_NAMES.map((n,i)=>{
-        const v=r.comps[i];const pct=Math.round((v/3)*100);
-        return`<div class="comp-row">
-          <span class="comp-nm">${n}</span>
-          <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${barColor(v)}"></div></div>
-          <span class="comp-sc" style="color:${barColor(v)}">${v}/3</span>
-        </div>`;
-      }).join('')}
-      <div style="margin-top:12px">
-        <table class="report-table">
-          <tr><td>Puntuación global ICSP</td><td>${r.icsp_t} / 21</td></tr>
-          <tr><td>Interpretación</td><td>${r.icsp_interp}</td></tr>
-          <tr><td>Punto de corte</td><td>> 5 = calidad de sueño alterada</td></tr>
-        </table>
-      </div>
-      ${r.icsp_t>5?`<div class="alert">Calidad de sueño alterada. Identificar componente dominante e intervenir.</div>`:''}
-    </div>
-
-    <!-- RECOMENDACIÓN -->
-    <div class="card">
-      <div class="card-title">Recomendación clínica</div>
-      <div class="rec-box">
-        <ul style="padding-left:20px">
-          ${recs.map(x=>`<li>${x}</li>`).join('')}
-        </ul>
-      </div>
-      <div style="margin-top:12px;font-size:11px;color:var(--muted);text-align:right">
-        Evaluación registrada · ${new Date().toLocaleDateString('es-PE')} · Dr. Wenceslao Ochoa Cuadros
-      </div>
-    </div>
-  `;
+// ---- LOGIN ----
+function goLogin(){
+  showView('login');
+  setTimeout(()=>{const el=document.getElementById('clave-input');if(el)el.focus();},100);
 }
-
-// ---- PRINT ----
-function printReport(){
-  const content=document.getElementById('res-all').innerHTML;
-  const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
-  <title>Informe PANACEA — ${gv('nombre')}</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',sans-serif;color:#1a1a1a;padding:30px;max-width:700px;margin:0 auto}
-    .card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:14px;break-inside:avoid}
-    .card-title{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
-    .report-table{width:100%;font-size:13px;border-collapse:collapse}
-    .report-table td{padding:5px 0;border-bottom:1px solid #f3f4f6}
-    .report-table td:first-child{color:#6b7280;width:45%}
-    .report-table td:last-child{font-weight:500}
-    .report-table tr:last-child td{border-bottom:none}
-    .risk-banner{display:flex;align-items:center;gap:14px;padding:14px;border-radius:8px;margin-bottom:12px}
-    .risk-banner.verde{background:#f0fdf4;border:1px solid #86efac}
-    .risk-banner.amarillo{background:#fffbeb;border:1px solid #fcd34d}
-    .risk-banner.rojo{background:#fef2f2;border:1px solid #fca5a5}
-    .risk-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0}
-    .risk-dot.verde{background:#5a9a2e}.risk-dot.amarillo{background:#d97706}.risk-dot.rojo{background:#dc2626}
-    .risk-title{font-size:18px;font-weight:600}
-    .risk-sub{font-size:12px;color:#6b7280;margin-top:2px}
-    .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-    .mcard{border-radius:8px;padding:12px}
-    .mcard.blue-bg{background:#eff9ff;border:1px solid #bae6fd}
-    .mcard.green-bg{background:#f0fdf4;border:1px solid #bbf7d0}
-    .mlbl{font-size:11px;color:#6b7280;margin-bottom:4px}
-    .mval{font-size:26px;font-weight:600;line-height:1}
-    .mval span{font-size:13px;font-weight:400;color:#6b7280}
-    .minterp{font-size:11px;color:#6b7280;margin-top:3px}
-    .badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-top:4px}
-    .badge.verde{background:#dcfce7;color:#166534}
-    .badge.amarillo{background:#fef9c3;color:#854d0e}
-    .badge.rojo{background:#fee2e2;color:#991b1b}
-    .comp-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6}
-    .comp-row:last-child{border-bottom:none}
-    .comp-nm{font-size:12px;color:#6b7280;flex:1}
-    .bar-bg{width:80px;height:5px;background:#e5e7eb;border-radius:3px}
-    .bar-fill{height:5px;border-radius:3px}
-    .comp-sc{font-size:12px;font-weight:600;width:30px;text-align:right}
-    .rec-box{background:#f0fbff;border-left:3px solid #4DC8F0;border-radius:0 8px 8px 0;padding:14px;font-size:13px;line-height:1.7}
-    .rec-box li{margin-bottom:5px}
-    .alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 12px;font-size:12px;color:#9a3412;margin-top:10px}
-    .alert.danger{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
-    h2{font-size:16px;color:#1aa8d4;margin-bottom:4px}
-    .header-print{border-bottom:3px solid #4DC8F0;padding-bottom:12px;margin-bottom:20px}
-    @media print{body{padding:15px}.card{page-break-inside:avoid}}
-  </style></head><body>
-  <div class="header-print">
-    <h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2>
-    <div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · AQP Industrial Service SAC · Unidad Las Bambas</div>
-  </div>
-  ${content}
-  </body></html>`);
-  w.document.close();
-  setTimeout(()=>w.print(),600);
+function checkLogin(){
+  const v=document.getElementById('clave-input').value;
+  const err=document.getElementById('login-error');
+  if(v===PASS){
+    isDoc=true;
+    document.getElementById('clave-input').value='';
+    err.style.display='none';
+    document.getElementById('med-tabs').style.display='flex';
+    showView('hist');
+    document.getElementById('tab-hist').classList.add('active');
+    document.getElementById('tab-eval').classList.remove('active');
+    loadHistory();
+  }else{
+    err.style.display='block';
+    document.getElementById('clave-input').value='';
+  }
+}
+function logout(){
+  isDoc=false;
+  document.getElementById('med-tabs').style.display='none';
+  showView('eval');
+  eA=new Array(8).fill(-1);iA=new Array(ICSP.length).fill(-1);
+  reiniciarForm();
+}
+function switchTab(t){
+  if(t==='hist'&&!isDoc){goLogin();return;}
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.getElementById(`tab-${t}`).classList.add('active');
+  showView(t==='hist'?'hist':'eval');
+  if(t==='hist')loadHistory();
+  if(t==='eval'&&isDoc)reiniciarForm();
+}
+function showView(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
+  document.getElementById(`view-${v}`).classList.add('on');
 }
 
 // ---- STORAGE ----
-function saveRec(r){
-  try{let h=JSON.parse(localStorage.getItem('panacea_h')||'[]');h.unshift(r);if(h.length>200)h=h.slice(0,200);localStorage.setItem('panacea_h',JSON.stringify(h));}catch(e){}
-}
+function saveRec(r){try{let h=JSON.parse(localStorage.getItem('panacea_h')||'[]');h.unshift(r);if(h.length>300)h=h.slice(0,300);localStorage.setItem('panacea_h',JSON.stringify(h));}catch(e){}}
 function loadRecs(){try{return JSON.parse(localStorage.getItem('panacea_h')||'[]');}catch(e){return[];}}
-function clearAll(){if(confirm('¿Eliminar todo el historial guardado en este dispositivo?')){try{localStorage.removeItem('panacea_h');}catch(e){}loadHistory();}}
+function clearAll(){if(confirm('¿Eliminar todo el historial?')){try{localStorage.removeItem('panacea_h');}catch(e){}loadHistory();}}
 
 // ---- HISTORY ----
 function loadHistory(){
@@ -584,19 +448,12 @@ function loadHistory(){
   if(!recs.length){list.innerHTML='<div class="hist-empty">No hay evaluaciones registradas aún.</div>';return;}
   list.innerHTML=recs.map((r,i)=>{
     const dc=r.col==='verde'?'#5a9a2e':r.col==='amarillo'?'#d97706':'#dc2626';
-    const recs2=r.riesgo==='Alto'
-      ?['Derivación inmediata al médico ocupacional.','Restricción temporal de conducción y puestos PCS.','Solicitar evaluación especializada de trastornos del sueño.','Notificar a Supervisor HSEC y registrar en expediente.']
-      :r.riesgo==='Moderado'
-      ?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño.','Aplicar Herramienta del Supervisor (Anexo 05) en cada turno.','Reevaluar con ESE + ICSP en 30 días.']
-      :['Continuar vigilancia periódica según protocolo EMO.','Reforzar pausas activas y hábitos de descanso.','Reevaluar en próximo EMO programado.'];
-    const barC=v=>v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';
-    return`<div class="hist-item" onclick="toggleDetail(${i})">
+    const rc2=r.riesgo==='Alto'?['Derivación inmediata al médico ocupacional.','Restricción de conducción y PCS hasta reevaluación.','Considerar estudio de sueño especializado.','Registrar en expediente médico ocupacional.']:r.riesgo==='Moderado'?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño.','Aplicar Herramienta del Supervisor (Anexo 05).','Reevaluar en 30 días.']:['Vigilancia periódica según protocolo EMO.','Reforzar pausas activas y hábitos de descanso.','Reevaluar en próximo EMO.'];
+    return`<div class="hist-item">
+      <div class="hist-header" onclick="toggleDetail(${i})">
         <div class="hist-dot" style="background:${dc}"></div>
-        <div class="hist-info">
-          <div class="hist-name">${r.nombre}</div>
-          <div class="hist-meta">${r.cargo} · ${r.turno} · ${r.fecha}</div>
-        </div>
-        <div class="hist-scores">ESE: <strong>${r.ese}/24</strong><br>ICSP: <strong>${r.icsp_t}/21</strong><br><span style="display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;background:${r.col==='verde'?'#dcfce7':r.col==='amarillo'?'#fef9c3':'#fee2e2'};color:${r.col==='verde'?'#166534':r.col==='amarillo'?'#854d0e':'#991b1b'}">${r.riesgo}</span></div>
+        <div class="hist-info"><div class="hist-name">${r.nombre}</div><div class="hist-meta">${r.cargo} · ${r.turno} · ${r.fecha}</div></div>
+        <div class="hist-scores">ESE: <strong>${r.ese}/24</strong><br>ICSP: <strong>${r.icsp_t}/21</strong><br><span style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;background:${r.col==='verde'?'#dcfce7':r.col==='amarillo'?'#fef9c3':'#fee2e2'};color:${r.col==='verde'?'#166534':r.col==='amarillo'?'#854d0e':'#991b1b'}">${r.riesgo}</span></div>
       </div>
       <div class="hist-detail" id="hd${i}">
         <table class="report-table" style="margin-bottom:12px">
@@ -604,80 +461,61 @@ function loadHistory(){
           <tr><td>Área</td><td>${r.area}</td></tr>
           <tr><td>Epworth (ESE)</td><td>${r.ese}/24 — ${r.ese_interp}</td></tr>
           <tr><td>Pittsburgh (ICSP)</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr>
-          <tr><td>Riesgo</td><td><strong>${r.riesgo}</strong></td></tr>
+          <tr><td>Nivel de riesgo</td><td><strong>${r.riesgo}</strong></td></tr>
+          <tr><td>Acción</td><td>${r.accion}</td></tr>
         </table>
         <div style="margin-bottom:10px">
           ${C_NAMES.map((n,ci)=>{const v=r.comps[ci];const pct=Math.round((v/3)*100);return`<div class="comp-row"><span class="comp-nm">${n}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${barC(v)}"></div></div><span class="comp-sc" style="color:${barC(v)}">${v}/3</span></div>`;}).join('')}
         </div>
-        <div class="rec-box"><ul style="padding-left:18px">${recs2.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-        <div style="margin-top:8px;text-align:right"><button class="btn btn-blue" style="font-size:11px;padding:5px 12px" onclick="printHist(${i})">Imprimir informe</button></div>
-      </div>`;
+        <div class="rec-box" style="margin-bottom:10px"><ul style="padding-left:18px">${rc2.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        <button class="btn btn-blue" style="font-size:11px;padding:5px 14px" onclick="printRec(${i})">Imprimir informe</button>
+      </div>
+    </div>`;
   }).join('');
 }
+function toggleDetail(i){document.getElementById(`hd${i}`).classList.toggle('open');}
 
-function toggleDetail(i){
-  const d=document.getElementById(`hd${i}`);
-  d.classList.toggle('open');
-}
-
-function printHist(i){
+function printRec(i){
   const recs=loadRecs();const r=recs[i];if(!r)return;
-  const tmp=document.createElement('div');
-  renderResultTo(tmp,r);
+  const rc2=r.riesgo==='Alto'?['Derivación inmediata al médico ocupacional.','Restricción de conducción y PCS hasta reevaluación.','Considerar estudio de sueño especializado.','Registrar en expediente médico.']:r.riesgo==='Moderado'?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño.','Aplicar Herramienta del Supervisor (Anexo 05).','Reevaluar en 30 días.']:['Vigilancia periódica según protocolo EMO.','Reforzar pausas activas.','Reevaluar en próximo EMO.'];
   const w=window.open('','_blank');
   w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Informe PANACEA — ${r.nombre}</title>
-  <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;color:#1a1a1a;padding:30px;max-width:700px;margin:0 auto}.card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:14px;break-inside:avoid}.card-title{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}.report-table{width:100%;font-size:13px;border-collapse:collapse}.report-table td{padding:5px 0;border-bottom:1px solid #f3f4f6}.report-table td:first-child{color:#6b7280;width:45%}.report-table td:last-child{font-weight:500}.report-table tr:last-child td{border-bottom:none}.risk-banner{display:flex;align-items:center;gap:14px;padding:14px;border-radius:8px;margin-bottom:12px}.risk-banner.verde{background:#f0fdf4;border:1px solid #86efac}.risk-banner.amarillo{background:#fffbeb;border:1px solid #fcd34d}.risk-banner.rojo{background:#fef2f2;border:1px solid #fca5a5}.risk-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0}.risk-dot.verde{background:#5a9a2e}.risk-dot.amarillo{background:#d97706}.risk-dot.rojo{background:#dc2626}.risk-title{font-size:18px;font-weight:600}.risk-sub{font-size:12px;color:#6b7280;margin-top:2px}.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.mcard{border-radius:8px;padding:12px}.mcard.blue-bg{background:#eff9ff;border:1px solid #bae6fd}.mcard.green-bg{background:#f0fdf4;border:1px solid #bbf7d0}.mlbl{font-size:11px;color:#6b7280;margin-bottom:4px}.mval{font-size:26px;font-weight:600;line-height:1}.mval span{font-size:13px;font-weight:400;color:#6b7280}.minterp{font-size:11px;color:#6b7280;margin-top:3px}.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-top:4px}.badge.verde{background:#dcfce7;color:#166534}.badge.amarillo{background:#fef9c3;color:#854d0e}.badge.rojo{background:#fee2e2;color:#991b1b}.comp-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6}.comp-row:last-child{border-bottom:none}.comp-nm{font-size:12px;color:#6b7280;flex:1}.bar-bg{width:80px;height:5px;background:#e5e7eb;border-radius:3px}.bar-fill{height:5px;border-radius:3px}.comp-sc{font-size:12px;font-weight:600;width:30px;text-align:right}.rec-box{background:#f0fbff;border-left:3px solid #4DC8F0;border-radius:0 8px 8px 0;padding:14px;font-size:13px;line-height:1.7}.rec-box li{margin-bottom:5px}.alert{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 12px;font-size:12px;color:#9a3412;margin-top:10px}.alert.danger{background:#fef2f2;border-color:#fca5a5;color:#991b1b}h2{font-size:16px;color:#1aa8d4;margin-bottom:4px}.header-print{border-bottom:3px solid #4DC8F0;padding-bottom:12px;margin-bottom:20px}@media print{body{padding:15px}.card{page-break-inside:avoid}}</style></head><body>
-  <div class="header-print"><h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2><div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · AQP Industrial Service SAC · Unidad Las Bambas</div></div>
-  ${tmp.innerHTML}</body></html>`);
+  <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;color:#1a1a1a;padding:30px;max-width:700px;margin:0 auto}.card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:14px;break-inside:avoid}.ct{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}.rt{width:100%;font-size:13px;border-collapse:collapse}.rt td{padding:5px 0;border-bottom:1px solid #f3f4f6}.rt td:first-child{color:#6b7280;width:45%}.rt td:last-child{font-weight:500}.rt tr:last-child td{border-bottom:none}.rb{display:flex;align-items:center;gap:14px;padding:14px;border-radius:8px;margin-bottom:12px}.rb.verde{background:#f0fdf4;border:1px solid #86efac}.rb.amarillo{background:#fffbeb;border:1px solid #fcd34d}.rb.rojo{background:#fef2f2;border:1px solid #fca5a5}.rd{width:18px;height:18px;border-radius:50%;flex-shrink:0}.rd.verde{background:#5a9a2e}.rd.amarillo{background:#d97706}.rd.rojo{background:#dc2626}.rtl{font-size:18px;font-weight:600}.rs{font-size:12px;color:#6b7280;margin-top:2px}.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.mc{border-radius:8px;padding:12px}.mc.b{background:#eff9ff;border:1px solid #bae6fd}.mc.g{background:#f0fdf4;border:1px solid #bbf7d0}.ml{font-size:11px;color:#6b7280;margin-bottom:4px}.mv{font-size:26px;font-weight:600;line-height:1}.mv span{font-size:13px;font-weight:400;color:#6b7280}.mi{font-size:11px;color:#6b7280;margin-top:3px}.cr{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6}.cr:last-child{border-bottom:none}.cn{font-size:12px;color:#6b7280;flex:1}.bb{width:80px;height:5px;background:#e5e7eb;border-radius:3px}.bf{height:5px;border-radius:3px}.cs{font-size:12px;font-weight:600;width:30px;text-align:right}.recb{background:#f0fbff;border-left:3px solid #4DC8F0;border-radius:0 8px 8px 0;padding:14px;font-size:13px;line-height:1.7}.recb li{margin-bottom:5px}.hdr{border-bottom:3px solid #4DC8F0;padding-bottom:12px;margin-bottom:20px}h2{font-size:16px;color:#1aa8d4;margin-bottom:4px}@media print{.card{page-break-inside:avoid}}</style></head><body>
+  <div class="hdr"><h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2><div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · AQP Industrial Service SAC · Unidad Las Bambas</div></div>
+  <div class="card"><div class="ct">Identificación</div><table class="rt"><tr><td>Trabajador</td><td>${r.nombre}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div>
+  <div class="card"><div class="ct">Resultado integrado</div><div class="rb ${r.col}"><div class="rd ${r.col}"></div><div><div class="rtl">Riesgo ${r.riesgo}</div><div class="rs">${r.accion}</div></div></div><div class="mg"><div class="mc b"><div class="ml">Epworth (ESE)</div><div class="mv">${r.ese}<span>/24</span></div><div class="mi">${r.ese_interp}</div></div><div class="mc g"><div class="ml">Pittsburgh (ICSP)</div><div class="mv">${r.icsp_t}<span>/21</span></div><div class="mi">${r.icsp_interp}</div></div></div></div>
+  <div class="card"><div class="ct">Componentes Pittsburgh</div>${C_NAMES.map((n,ci)=>{const v=r.comps[ci];const pct=Math.round((v/3)*100);const bc=v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';return`<div class="cr"><span class="cn">${n}</span><div class="bb"><div class="bf" style="width:${pct}%;background:${bc}"></div></div><span class="cs" style="color:${bc}">${v}/3</span></div>`;}).join('')}<div style="margin-top:10px"><table class="rt"><tr><td>Total ICSP</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr></table></div></div>
+  <div class="card"><div class="ct">Recomendación clínica</div><div class="recb"><ul style="padding-left:18px">${rc2.map(x=>`<li>${x}</li>`).join('')}</ul></div><div style="margin-top:10px;font-size:11px;color:#6b7280;text-align:right">Dr. Wenceslao Ochoa Cuadros · ${r.fecha}</div></div>
+  </body></html>`);
   w.document.close();setTimeout(()=>w.print(),600);
 }
 
-function renderResultTo(container,r){
-  const recs2=r.riesgo==='Alto'?['Derivación inmediata al médico ocupacional.','Restricción temporal de conducción y puestos PCS.','Solicitar evaluación especializada de trastornos del sueño.','Notificar a Supervisor HSEC y registrar en expediente.']:r.riesgo==='Moderado'?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño.','Aplicar Herramienta del Supervisor (Anexo 05) en cada turno.','Reevaluar en 30 días.']:['Vigilancia periódica según protocolo EMO.','Reforzar pausas activas y hábitos de descanso.','Reevaluar en próximo EMO programado.'];
-  const barC=v=>v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';
-  container.innerHTML=`<div class="card"><div class="card-title">Identificación</div><table class="report-table"><tr><td>Trabajador</td><td>${r.nombre}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div><div class="card"><div class="card-title">Resultado integrado</div><div class="risk-banner ${r.col}"><div class="risk-dot ${r.col}"></div><div><div class="risk-title">Riesgo ${r.riesgo}</div><div class="risk-sub">${r.accion}</div></div></div><div class="mgrid"><div class="mcard blue-bg"><div class="mlbl">Epworth (ESE)</div><div class="mval">${r.ese}<span>/24</span></div><div class="minterp">${r.ese_interp}</div><div><span class="badge ${r.col}">${r.ese>=11?'Somnolencia excesiva':'Normal'}</span></div></div><div class="mcard green-bg"><div class="mlbl">Pittsburgh (ICSP)</div><div class="mval">${r.icsp_t}<span>/21</span></div><div class="minterp">${r.icsp_interp}</div><div><span class="badge ${r.col}">${r.icsp_t>5?'Calidad alterada':'Calidad buena'}</span></div></div></div></div><div class="card"><div class="card-title">Componentes Pittsburgh</div>${C_NAMES.map((n,i)=>{const v=r.comps[i];const pct=Math.round((v/3)*100);return`<div class="comp-row"><span class="comp-nm">${n}</span><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${barC(v)}"></div></div><span class="comp-sc" style="color:${barC(v)}">${v}/3</span></div>`;}).join('')}<div style="margin-top:10px"><table class="report-table"><tr><td>Total ICSP</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr></table></div></div><div class="card"><div class="card-title">Recomendación clínica</div><div class="rec-box"><ul style="padding-left:18px">${recs2.map(x=>`<li>${x}</li>`).join('')}</ul></div><div style="margin-top:10px;font-size:11px;color:#6b7280;text-align:right">Dr. Wenceslao Ochoa Cuadros · ${r.fecha}</div></div>`;
-}
-
-// ---- CSV DOWNLOAD ----
 function downloadCSV(){
   const recs=loadRecs();
   if(!recs.length){alert('No hay evaluaciones para descargar.');return;}
-  const heads=['Fecha','Nombre','DNI','Cargo','Área','Turno','ESE_Score','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1_CalidadSubj','C2_Latencia','C3_Duración','C4_Eficiencia','C5_Perturbaciones','C6_Medicación','C7_DisfunciónDiurna','Acción'];
+  const heads=['Fecha','Nombre','DNI','Cargo','Área','Turno','ESE','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1','C2','C3','C4','C5','C6','C7','Acción'];
   const rows=recs.map(r=>[r.fecha,r.nombre,r.dni,r.cargo,r.area,r.turno,r.ese,r.ese_interp,r.icsp_t,r.icsp_interp,r.riesgo,...r.comps,r.accion].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(','));
   const csv='\uFEFF'+[heads.join(','),...rows].join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=`Panacea_Evaluaciones_${new Date().toISOString().slice(0,10)}.csv`;a.click();
 }
 
-// ---- GOOGLE SHEETS ----
 async function sendToSheets(r){
-  const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwyARiYd99a0NAoiEBekzRFL0tOzC2urYZZyt8EjhwX2TMR4IizqHE5uaeUzZyTl-B7gQ/exec';
-  if(SCRIPT_URL.includes('REEMPLAZAR'))return;
-  try{
-    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,nombre:r.nombre,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});
-  }catch(e){}
+  const URL='https://script.google.com/macros/s/AKfycbwyARiYd99a0NAoiEBekzRFL0tOzC2urYZZyt8EjhwX2TMR4IizqHE5uaeUzZyTl-B7gQ/exec';
+  try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,nombre:r.nombre,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});}catch(e){}
 }
 
-// ---- TAB SWITCH ----
-function switchTab(t){
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));
-  document.getElementById(`tab-${t}`).classList.add('active');
-  document.getElementById(`view-${t}`).classList.add('on');
-  if(t==='hist')loadHistory();
-}
-
-function reiniciar(){
+function reiniciarForm(){
   eA=new Array(8).fill(-1);iA=new Array(ICSP.length).fill(-1);
   ['nombre','dni','area'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('cargo').value='';
   document.getElementById('turno').value='';
   document.getElementById('fecha').valueAsDate=new Date();
-  document.getElementById('send-status').innerHTML='';
-  document.getElementById('res-all').innerHTML='';
-  go(1);
+  [1,2,3,4].forEach(n=>document.getElementById(`s${n}`).style.display=n===1?'':'none');
+  curS=1;
+  document.getElementById('plbl').textContent='Paso 1 de 4 — Datos del trabajador';
+  document.getElementById('pfill').style.width='20%';
 }
 
-// ---- INIT ----
 document.getElementById('fecha').valueAsDate=new Date();
 </script>
 </body>
