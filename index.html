@@ -557,7 +557,7 @@ function downloadCSV(){
 }
 
 async function sendToSheets(r){
-  const URL='https://script.google.com/macros/s/AKfycbwkCD3lG2NtNLLahi8xAZzwDJ38kQMKT1EdgkjFOkS9dU7lxX-Pa6tWe2KLi30YemB1vg/exec';
+  const URL='https://script.google.com/macros/s/AKfycbz10a8CnuBFuJIFYe43srGQo3Db-ktEH2LmT7GGFncO2t7vlrWZOAoz-nNjasRIa3EmQg/exec';
   try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,apellidos:r.apellidos,nombres:r.nombres,empresa:r.empresa,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});}catch(e){}
 }
 
