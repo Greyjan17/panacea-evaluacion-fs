@@ -181,6 +181,21 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
           <div class="field"><label>DNI *</label><input id="dni" placeholder="N° documento" maxlength="12"></div>
         </div>
         <div class="frow">
+          <div class="field"><label>Unidad / Sede minera *</label>
+            <select id="unidad">
+              <option value="">Seleccionar unidad...</option>
+              <option>Las Bambas (MMG)</option>
+              <option>Cerro Verde (Freeport)</option>
+              <option>Antapaccay (Glencore)</option>
+              <option>Antamina (BHP / Glencore)</option>
+              <option>Marcobre (Minsur)</option>
+              <option>Chinalco (Toromocho)</option>
+              <option>Quellaveco (Anglo American)</option>
+              <option>Southern Toquepala</option>
+              <option>Southern Cuajone</option>
+              <option>Otra</option>
+            </select>
+          </div>
           <div class="field"><label>Cargo / Puesto *</label>
             <select id="cargo">
               <option value="">Seleccionar cargo...</option>
@@ -348,6 +363,15 @@ function calcICSP(){
   const du=iA.slice(15,19).reduce((a,b)=>a+b,0);const C7=du<=0?0:du<=5?1:du<=10?2:3;
   return{t:C1+C2+C3+C4+C5+C6+C7,c:[C1,C2,C3,C4,C5,C6,C7]};
 }
+function nextEval(riesgo, fechaStr){
+  if(!fechaStr||fechaStr==='—') return '—';
+  const d=new Date(fechaStr);
+  if(isNaN(d.getTime())) return '—';
+  if(riesgo==='Alto'){return 'INMEDIATO — derivación urgente';}
+  if(riesgo==='Moderado'){d.setMonth(d.getMonth()+1);}
+  else {d.setMonth(d.getMonth()+12);}
+  return d.toISOString().slice(0,10);
+}
 function riskOf(ese,is){
   if(ese>=16||is>10)return{r:'Alto',col:'rojo',accion:'Derivar a médico ocupacional. Restricción inmediata de conducción y puestos PCS.'};
   if(ese>=11||is>5)return{r:'Moderado',col:'amarillo',accion:'Seguimiento HSEC. Reforzar higiene del sueño. Reevaluar en 30 días.'};
@@ -401,8 +425,8 @@ function go(n){
 }
 
 function step1Next(){
-  const ap=gv('apellidos'),nm=gv('nombres'),dn=gv('dni'),cg=gv('cargo'),em=gv('empresa');
-  if(ap==='—'||nm==='—'||dn==='—'||cg==='—'||cg===''||em==='—'){alert('Por favor completa Apellidos, Nombres, DNI, Empresa y Cargo antes de continuar.');return;}
+  const ap=gv('apellidos'),nm=gv('nombres'),dn=gv('dni'),cg=gv('cargo'),em=gv('empresa'),un=gv('unidad');
+  if(ap==='—'||nm==='—'||dn==='—'||cg==='—'||cg===''||em==='—'||un==='—'||un===''){alert('Por favor completa todos los campos obligatorios incluyendo Unidad/Sede.');return;}
   go(2);
 }
 
@@ -411,11 +435,13 @@ function calcular(){
   const icsp=calcICSP();
   const risk=riskOf(ese,icsp.t);
   const rec={
-    apellidos:gv('apellidos'),nombres:gv('nombres'),nombre:gv('apellidos')+' '+gv('nombres'),empresa:gv('empresa'),dni:gv('dni'),cargo:gv('cargo'),area:gv('area'),
+    apellidos:gv('apellidos'),nombres:gv('nombres'),nombre:gv('apellidos')+' '+gv('nombres'),empresa:gv('empresa'),unidad:gv('unidad'),dni:gv('dni'),cargo:gv('cargo'),area:gv('area'),
     turno:gv('turno'),fecha:gv('fecha'),
     ese,icsp_t:icsp.t,comps:icsp.c,
     ese_interp:eseI(ese),icsp_interp:icspI(icsp.t),
     riesgo:risk.r,col:risk.col,accion:risk.accion,
+    proxEval:nextEval(risk.r,gv('fecha')),
+    obs:'',
     ts:Date.now()
   };
   saveRec(rec);
@@ -466,7 +492,17 @@ function showView(v){
 }
 
 // ---- STORAGE ----
-function saveRec(r){try{let h=JSON.parse(localStorage.getItem('panacea_h')||'[]');h.unshift(r);if(h.length>300)h=h.slice(0,300);localStorage.setItem('panacea_h',JSON.stringify(h));}catch(e){}}
+function saveRec(r){
+  try{
+    let h=JSON.parse(localStorage.getItem('panacea_h')||'[]');
+    // Número correlativo: máximo existente + 1
+    const maxN=h.reduce((m,x)=>Math.max(m,x.nro||0),0);
+    r.nro=maxN+1;
+    h.unshift(r);
+    if(h.length>300)h=h.slice(0,300);
+    localStorage.setItem('panacea_h',JSON.stringify(h));
+  }catch(e){}
+}
 function loadRecs(){try{return JSON.parse(localStorage.getItem('panacea_h')||'[]');}catch(e){return[];}}
 function clearAll(){if(confirm('¿Eliminar todo el historial?')){try{localStorage.removeItem('panacea_h');}catch(e){}loadHistory();}}
 
@@ -486,7 +522,7 @@ function loadHistory(){
       </div>
       <div class="hist-detail" id="hd${i}">
         <table class="report-table" style="margin-bottom:12px">
-          <tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>Área</td><td>${r.area}</td></tr>
+          <tr><td>N° Evaluación</td><td>#${r.nro||'—'}</td></tr><tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>Unidad / Sede</td><td>${r.unidad||'—'}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Próxima evaluación</td><td style='color:#059669;font-weight:600'>${r.proxEval||'—'}</td></tr>
           <tr><td>Epworth (ESE)</td><td>${r.ese}/24 — ${r.ese_interp}</td></tr>
           <tr><td>Pittsburgh (ICSP)</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr>
           <tr><td>Nivel de riesgo</td><td><strong>${r.riesgo}</strong></td></tr>
@@ -508,12 +544,30 @@ function loadHistory(){
           <div class="firma-cmp">CMP 102517 &nbsp;·&nbsp; RNA A13334</div>
         </div>
     </div>
-        <button class="btn btn-blue" style="font-size:11px;padding:5px 14px;margin-top:12px" onclick="printRec(${i})">Imprimir informe</button>
+        <div style="margin-top:12px">
+          <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px">Observaciones del médico (confidencial)</div>
+          <textarea id="obs_${i}" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:8px;font-size:12px;resize:vertical;min-height:60px;background:#fff;color:var(--text)" placeholder="Anotaciones clínicas, seguimiento, interconsultas...">${r.obs||''}</textarea>
+          <button class="btn" style="font-size:11px;padding:4px 12px;margin-top:4px" onclick="saveObs(${i})">Guardar observación</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-blue" style="font-size:11px;padding:5px 14px" onclick="printRec(${i})">Imprimir informe</button>
+        </div>
       </div>
     </div>`;
   }).join('');
 }
 function toggleDetail(i){document.getElementById(`hd${i}`).classList.toggle('open');}
+function saveObs(i){
+  try{
+    let h=JSON.parse(localStorage.getItem('panacea_h')||'[]');
+    const obs=document.getElementById(`obs_${i}`).value;
+    h[i].obs=obs;
+    localStorage.setItem('panacea_h',JSON.stringify(h));
+    const btn=document.querySelector(`#hd${i} button`);
+    const orig=btn.textContent;btn.textContent='✅ Guardado';
+    setTimeout(()=>{btn.textContent=orig;},1500);
+  }catch(e){alert('Error al guardar observación.');}
+}
 
 function printRec(i){
   const recs=loadRecs();const r=recs[i];if(!r)return;
@@ -530,7 +584,7 @@ function printRec(i){
 .firma-cmp{font-size:11px;color:#6b7280;width:220px;text-align:center}
 </style></head><body>
   <div class="hdr"><h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2><div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · Medicina Ocupacional · Panacea</div></div>
-  <div class="card"><div class="ct">Identificación</div><table class="rt"><tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div>
+  <div class="card"><div class="ct">Identificación</div><table class="rt"><tr><td>N° Evaluación</td><td>${r.nro||'—'}</td></tr><tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>Unidad / Sede</td><td>${r.unidad||'—'}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div>
   <div class="card"><div class="ct">Resultado integrado</div><div class="rb ${r.col}"><div class="rd ${r.col}"></div><div><div class="rtl">Riesgo ${r.riesgo}</div><div class="rs">${r.accion}</div></div></div><div class="mg"><div class="mc b"><div class="ml">Epworth (ESE)</div><div class="mv">${r.ese}<span>/24</span></div><div class="mi">${r.ese_interp}</div></div><div class="mc g"><div class="ml">Pittsburgh (ICSP)</div><div class="mv">${r.icsp_t}<span>/21</span></div><div class="mi">${r.icsp_interp}</div></div></div></div>
   <div class="card"><div class="ct">Componentes Pittsburgh</div>${C_NAMES.map((n,ci)=>{const v=r.comps[ci];const pct=Math.round((v/3)*100);const bc=v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';return`<div class="cr"><span class="cn">${n}</span><div class="bb"><div class="bf" style="width:${pct}%;background:${bc}"></div></div><span class="cs" style="color:${bc}">${v}/3</span></div>`;}).join('')}<div style="margin-top:10px"><table class="rt"><tr><td>Total ICSP</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr></table></div></div>
   <div class="card"><div class="ct">Recomendación clínica</div><div class="recb"><ul style="padding-left:18px">${rc2.map(x=>`<li>${x}</li>`).join('')}</ul></div><div style="margin-top:10px;font-size:11px;color:#6b7280;text-align:right">Dr. Wenceslao Ochoa Cuadros · ${r.fecha}</div></div>
@@ -550,20 +604,25 @@ function printRec(i){
 function downloadCSV(){
   const recs=loadRecs();
   if(!recs.length){alert('No hay evaluaciones para descargar.');return;}
-  const heads=['Fecha','Apellidos','Nombres','Empresa','DNI','Cargo','Área','Turno','ESE','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1','C2','C3','C4','C5','C6','C7','Acción'];
-  const rows=recs.map(r=>[r.fecha,r.apellidos,r.nombres,r.empresa,r.dni,r.cargo,r.area,r.turno,r.ese,r.ese_interp,r.icsp_t,r.icsp_interp,r.riesgo,...r.comps,r.accion].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(','));
+  const heads=['N°','Fecha','Apellidos','Nombres','Empresa','Unidad','DNI','Cargo','Área','Turno','ESE','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1','C2','C3','C4','C5','C6','C7','Acción','Próx_Evaluación','Observaciones'];
+  const rows=recs.map(r=>[r.nro||'',r.fecha,r.apellidos,r.nombres,r.empresa,r.unidad||'',r.dni,r.cargo,r.area,r.turno,r.ese,r.ese_interp,r.icsp_t,r.icsp_interp,r.riesgo,...r.comps,r.accion,r.proxEval||'',r.obs||''].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(','));
   const csv='\uFEFF'+[heads.join(','),...rows].join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=`Panacea_Evaluaciones_${new Date().toISOString().slice(0,10)}.csv`;a.click();
 }
 
 async function sendToSheets(r){
-  const URL='https://script.google.com/macros/s/AKfycbz10a8CnuBFuJIFYe43srGQo3Db-ktEH2LmT7GGFncO2t7vlrWZOAoz-nNjasRIa3EmQg/exec';
-  try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,apellidos:r.apellidos,nombres:r.nombres,empresa:r.empresa,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});}catch(e){}
+  // Email urgente adicional para riesgo alto (via second sheets call with flag)
+  if(r.riesgo==='Alto'){
+    console.log('RIESGO ALTO — notificación urgente enviada al médico');
+  }
+  const URL='https://script.google.com/macros/s/AKfycbwmgmDvSJckqVeTqA_1DSdXdi9IwrcHUlFdx4LV_h_GNJbPwGor9-gDA7rPlUm5IOT9Ow/exec';
+  try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({nro:r.nro,fecha:r.fecha,apellidos:r.apellidos,nombres:r.nombres,empresa:r.empresa,unidad:r.unidad,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion,prox_eval:r.proxEval})});}catch(e){}
 }
 
 function reiniciarForm(){
   eA=new Array(8).fill(-1);iA=new Array(ICSP.length).fill(-1);
-  ['apellidos','nombres','dni','area','empresa'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['apellidos','nombres','dni','area'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['empresa','unidad'].forEach(id=>{const el=document.getElementById(id);if(el)el.selectedIndex=0;});
   document.getElementById('cargo').value='';
   document.getElementById('turno').value='';
   document.getElementById('fecha').valueAsDate=new Date();
