@@ -143,7 +143,7 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
   <div class="htext">
     <div class="htitle">PANACEA — Evaluación de Sueño y Somnolencia</div>
     <div class="hdoc">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional</div>
-    <div class="hsub">AQP Industrial Service SAC · Unidad Las Bambas</div>
+    <div class="hsub">Medicina Ocupacional · Panacea</div>
   </div>
 </header>
 
@@ -168,7 +168,16 @@ header{background:#fff;border-bottom:3px solid var(--blue);padding:14px 20px;dis
       <div class="card">
         <div class="card-title">Datos del trabajador</div>
         <div class="frow">
-          <div class="field"><label>Apellidos y nombres *</label><input id="nombre" placeholder="Apellidos y nombres completos"></div>
+          <div class="field"><label>Apellidos *</label><input id="apellidos" placeholder="Apellidos completos"></div>
+          <div class="field"><label>Nombres *</label><input id="nombres" placeholder="Nombres completos"></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label>Empresa *</label>
+            <select id="empresa">
+              <option value="">Seleccionar empresa...</option>
+              <option>AQP Industrial Service SAC</option>
+            </select>
+          </div>
           <div class="field"><label>DNI *</label><input id="dni" placeholder="N° documento" maxlength="12"></div>
         </div>
         <div class="frow">
@@ -381,8 +390,8 @@ function go(n){
 }
 
 function step1Next(){
-  const nm=gv('nombre'),dn=gv('dni'),cg=gv('cargo');
-  if(nm==='—'||dn==='—'||cg==='—'||cg===''){alert('Por favor completa Nombre, DNI y Cargo antes de continuar.');return;}
+  const ap=gv('apellidos'),nm=gv('nombres'),dn=gv('dni'),cg=gv('cargo'),em=gv('empresa');
+  if(ap==='—'||nm==='—'||dn==='—'||cg==='—'||cg===''||em==='—'){alert('Por favor completa Apellidos, Nombres, DNI, Empresa y Cargo antes de continuar.');return;}
   go(2);
 }
 
@@ -391,7 +400,7 @@ function calcular(){
   const icsp=calcICSP();
   const risk=riskOf(ese,icsp.t);
   const rec={
-    nombre:gv('nombre'),dni:gv('dni'),cargo:gv('cargo'),area:gv('area'),
+    apellidos:gv('apellidos'),nombres:gv('nombres'),nombre:gv('apellidos')+' '+gv('nombres'),empresa:gv('empresa'),dni:gv('dni'),cargo:gv('cargo'),area:gv('area'),
     turno:gv('turno'),fecha:gv('fecha'),
     ese,icsp_t:icsp.t,comps:icsp.c,
     ese_interp:eseI(ese),icsp_interp:icspI(icsp.t),
@@ -461,13 +470,12 @@ function loadHistory(){
     return`<div class="hist-item">
       <div class="hist-header" onclick="toggleDetail(${i})">
         <div class="hist-dot" style="background:${dc}"></div>
-        <div class="hist-info"><div class="hist-name">${r.nombre}</div><div class="hist-meta">${r.cargo} · ${r.turno} · ${r.fecha}</div></div>
+        <div class="hist-info"><div class="hist-name">${r.apellidos||r.nombre}, ${r.nombres||""}</div><div class="hist-meta">${r.cargo} · ${r.turno} · ${r.fecha}</div></div>
         <div class="hist-scores">ESE: <strong>${r.ese}/24</strong><br>ICSP: <strong>${r.icsp_t}/21</strong><br><span style="font-size:9px;font-weight:600;padding:1px 6px;border-radius:3px;background:${r.col==='verde'?'#dcfce7':r.col==='amarillo'?'#fef9c3':'#fee2e2'};color:${r.col==='verde'?'#166534':r.col==='amarillo'?'#854d0e':'#991b1b'}">${r.riesgo}</span></div>
       </div>
       <div class="hist-detail" id="hd${i}">
         <table class="report-table" style="margin-bottom:12px">
-          <tr><td>DNI</td><td>${r.dni}</td></tr>
-          <tr><td>Área</td><td>${r.area}</td></tr>
+          <tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>Área</td><td>${r.area}</td></tr>
           <tr><td>Epworth (ESE)</td><td>${r.ese}/24 — ${r.ese_interp}</td></tr>
           <tr><td>Pittsburgh (ICSP)</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr>
           <tr><td>Nivel de riesgo</td><td><strong>${r.riesgo}</strong></td></tr>
@@ -500,7 +508,7 @@ function printRec(i){
   const recs=loadRecs();const r=recs[i];if(!r)return;
   const rc2=r.riesgo==='Alto'?['Derivación inmediata al médico ocupacional.','Restricción de conducción y PCS hasta reevaluación.','Considerar estudio de sueño especializado.','Registrar en expediente médico.']:r.riesgo==='Moderado'?['Seguimiento quincenal por salud ocupacional.','Reforzar higiene del sueño.','Aplicar Herramienta del Supervisor (Anexo 05).','Reevaluar en 30 días.']:['Vigilancia periódica según protocolo EMO.','Reforzar pausas activas.','Reevaluar en próximo EMO.'];
   const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Informe PANACEA — ${r.nombre}</title>
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Informe PANACEA — ${r.apellidos} ${r.nombres}</title>
   <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',sans-serif;color:#1a1a1a;padding:30px;max-width:700px;margin:0 auto}.card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:14px;break-inside:avoid}.ct{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}.rt{width:100%;font-size:13px;border-collapse:collapse}.rt td{padding:5px 0;border-bottom:1px solid #f3f4f6}.rt td:first-child{color:#6b7280;width:45%}.rt td:last-child{font-weight:500}.rt tr:last-child td{border-bottom:none}.rb{display:flex;align-items:center;gap:14px;padding:14px;border-radius:8px;margin-bottom:12px}.rb.verde{background:#f0fdf4;border:1px solid #86efac}.rb.amarillo{background:#fffbeb;border:1px solid #fcd34d}.rb.rojo{background:#fef2f2;border:1px solid #fca5a5}.rd{width:18px;height:18px;border-radius:50%;flex-shrink:0}.rd.verde{background:#5a9a2e}.rd.amarillo{background:#d97706}.rd.rojo{background:#dc2626}.rtl{font-size:18px;font-weight:600}.rs{font-size:12px;color:#6b7280;margin-top:2px}.mg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.mc{border-radius:8px;padding:12px}.mc.b{background:#eff9ff;border:1px solid #bae6fd}.mc.g{background:#f0fdf4;border:1px solid #bbf7d0}.ml{font-size:11px;color:#6b7280;margin-bottom:4px}.mv{font-size:26px;font-weight:600;line-height:1}.mv span{font-size:13px;font-weight:400;color:#6b7280}.mi{font-size:11px;color:#6b7280;margin-top:3px}.cr{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6}.cr:last-child{border-bottom:none}.cn{font-size:12px;color:#6b7280;flex:1}.bb{width:80px;height:5px;background:#e5e7eb;border-radius:3px}.bf{height:5px;border-radius:3px}.cs{font-size:12px;font-weight:600;width:30px;text-align:right}.recb{background:#f0fbff;border-left:3px solid #4DC8F0;border-radius:0 8px 8px 0;padding:14px;font-size:13px;line-height:1.7}.recb li{margin-bottom:5px}.hdr{border-bottom:3px solid #4DC8F0;padding-bottom:12px;margin-bottom:20px}h2{font-size:16px;color:#1aa8d4;margin-bottom:4px}@media print{.card{page-break-inside:avoid}}
 .firma-block{margin-top:16px;border-top:1px solid #e5e7eb;padding-top:16px}
 .disclaimer{font-size:11px;color:#6b7280;font-style:italic;line-height:1.6;background:#f9fafb;border-left:3px solid #4DC8F0;padding:10px 12px;border-radius:0 8px 8px 0;margin-bottom:16px}
@@ -510,8 +518,8 @@ function printRec(i){
 .firma-cargo{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;width:220px;text-align:center}
 .firma-cmp{font-size:11px;color:#6b7280;width:220px;text-align:center}
 </style></head><body>
-  <div class="hdr"><h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2><div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · AQP Industrial Service SAC · Unidad Las Bambas</div></div>
-  <div class="card"><div class="ct">Identificación</div><table class="rt"><tr><td>Trabajador</td><td>${r.nombre}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div>
+  <div class="hdr"><h2>PANACEA — Informe de Evaluación de Sueño y Somnolencia</h2><div style="font-size:12px;color:#6b7280">Dr. Wenceslao Ochoa Cuadros · Médico Ocupacional · Medicina Ocupacional · Panacea</div></div>
+  <div class="card"><div class="ct">Identificación</div><table class="rt"><tr><td>Apellidos</td><td>${r.apellidos}</td></tr><tr><td>Nombres</td><td>${r.nombres}</td></tr><tr><td>Empresa</td><td>${r.empresa}</td></tr><tr><td>DNI</td><td>${r.dni}</td></tr><tr><td>Cargo</td><td>${r.cargo}</td></tr><tr><td>Área</td><td>${r.area}</td></tr><tr><td>Turno</td><td>${r.turno}</td></tr><tr><td>Fecha</td><td>${r.fecha}</td></tr><tr><td>Evaluador</td><td>Dr. Wenceslao Ochoa Cuadros</td></tr></table></div>
   <div class="card"><div class="ct">Resultado integrado</div><div class="rb ${r.col}"><div class="rd ${r.col}"></div><div><div class="rtl">Riesgo ${r.riesgo}</div><div class="rs">${r.accion}</div></div></div><div class="mg"><div class="mc b"><div class="ml">Epworth (ESE)</div><div class="mv">${r.ese}<span>/24</span></div><div class="mi">${r.ese_interp}</div></div><div class="mc g"><div class="ml">Pittsburgh (ICSP)</div><div class="mv">${r.icsp_t}<span>/21</span></div><div class="mi">${r.icsp_interp}</div></div></div></div>
   <div class="card"><div class="ct">Componentes Pittsburgh</div>${C_NAMES.map((n,ci)=>{const v=r.comps[ci];const pct=Math.round((v/3)*100);const bc=v===0?'#5a9a2e':v<=1?'#d97706':'#dc2626';return`<div class="cr"><span class="cn">${n}</span><div class="bb"><div class="bf" style="width:${pct}%;background:${bc}"></div></div><span class="cs" style="color:${bc}">${v}/3</span></div>`;}).join('')}<div style="margin-top:10px"><table class="rt"><tr><td>Total ICSP</td><td>${r.icsp_t}/21 — ${r.icsp_interp}</td></tr></table></div></div>
   <div class="card"><div class="ct">Recomendación clínica</div><div class="recb"><ul style="padding-left:18px">${rc2.map(x=>`<li>${x}</li>`).join('')}</ul></div><div style="margin-top:10px;font-size:11px;color:#6b7280;text-align:right">Dr. Wenceslao Ochoa Cuadros · ${r.fecha}</div></div>
@@ -522,20 +530,20 @@ function printRec(i){
 function downloadCSV(){
   const recs=loadRecs();
   if(!recs.length){alert('No hay evaluaciones para descargar.');return;}
-  const heads=['Fecha','Nombre','DNI','Cargo','Área','Turno','ESE','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1','C2','C3','C4','C5','C6','C7','Acción'];
-  const rows=recs.map(r=>[r.fecha,r.nombre,r.dni,r.cargo,r.area,r.turno,r.ese,r.ese_interp,r.icsp_t,r.icsp_interp,r.riesgo,...r.comps,r.accion].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(','));
+  const heads=['Fecha','Apellidos','Nombres','Empresa','DNI','Cargo','Área','Turno','ESE','ESE_Interpretación','ICSP_Total','ICSP_Interpretación','Riesgo','C1','C2','C3','C4','C5','C6','C7','Acción'];
+  const rows=recs.map(r=>[r.fecha,r.apellidos,r.nombres,r.empresa,r.dni,r.cargo,r.area,r.turno,r.ese,r.ese_interp,r.icsp_t,r.icsp_interp,r.riesgo,...r.comps,r.accion].map(v=>`"${String(v||'').replace(/"/g,'""')}"`).join(','));
   const csv='\uFEFF'+[heads.join(','),...rows].join('\n');
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=`Panacea_Evaluaciones_${new Date().toISOString().slice(0,10)}.csv`;a.click();
 }
 
 async function sendToSheets(r){
-  const URL='https://script.google.com/macros/s/AKfycbwyARiYd99a0NAoiEBekzRFL0tOzC2urYZZyt8EjhwX2TMR4IizqHE5uaeUzZyTl-B7gQ/exec';
-  try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,nombre:r.nombre,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});}catch(e){}
+  const URL='https://script.google.com/macros/s/AKfycbwkCD3lG2NtNLLahi8xAZzwDJ38kQMKT1EdgkjFOkS9dU7lxX-Pa6tWe2KLi30YemB1vg/exec';
+  try{await fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({fecha:r.fecha,apellidos:r.apellidos,nombres:r.nombres,empresa:r.empresa,dni:r.dni,cargo:r.cargo,area:r.area,turno:r.turno,ese:r.ese,ese_interp:r.ese_interp,icsp:r.icsp_t,icsp_interp:r.icsp_interp,riesgo:r.riesgo,c1:r.comps[0],c2:r.comps[1],c3:r.comps[2],c4:r.comps[3],c5:r.comps[4],c6:r.comps[5],c7:r.comps[6],accion:r.accion})});}catch(e){}
 }
 
 function reiniciarForm(){
   eA=new Array(8).fill(-1);iA=new Array(ICSP.length).fill(-1);
-  ['nombre','dni','area'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['apellidos','nombres','dni','area','empresa'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('cargo').value='';
   document.getElementById('turno').value='';
   document.getElementById('fecha').valueAsDate=new Date();
